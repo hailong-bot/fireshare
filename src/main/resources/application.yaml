@@ -6,8 +6,11 @@ spring:
     username: root
     password: fghf987....
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 logging:
   file:
-    name: D:\code\java\springboot\fireshare\src\main\resources\logs\web.log
+    name: G:\code\fireshare\src\main\resources\logs\web.log
   level:
     root: info

@@ -2,11 +2,14 @@ package com.hailong.fireshare.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hailong.fireshare.entity.RestResult;
 import com.hailong.fireshare.entity.User;
 import com.hailong.fireshare.mapper.UserMapper;
 import com.hailong.fireshare.service.UserService;
 import com.hailong.fireshare.utils.DateUtil;
+import com.hailong.fireshare.utils.JWTUtil;
+import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
@@ -20,6 +23,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Resource
     UserMapper userMapper;
+
+    @Resource
+    JWTUtil jwtUtil;
 
     @Override
     public RestResult<String> registerUser(User user) {
@@ -74,5 +80,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return true;
         }
         return false;
+    }
+
+
+
+    @Override
+    public User getUserByToken(String token) {
+        User tokenUserInfo = null;
+        try {
+            Claims c = jwtUtil.parseJWT(token);
+            String subject = c.getSubject();
+            ObjectMapper objectMapper = new ObjectMapper();
+            tokenUserInfo = objectMapper.readValue(subject, User.class);
+        } catch (Exception e) {
+            log.error("解码异常");
+            return null;
+
+        }
+        return tokenUserInfo;
     }
 }

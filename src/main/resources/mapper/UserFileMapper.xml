@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hailong.fireshare.mapper.UserFileMapper">
+    <select id="userfileList" resultType="com.hailong.fireshare.vo.UserFileListVo">
+        SELECT * FROM userFile uf
+        LEFT JOIN file f on f.fileId = uf.fileId
+        <where>
+            <if test="userfile.filePath != null">
+                and uf.filePath = #{userfile.filePath}
+            </if>
+            <if test="userfile.userId != null">
+                and uf.userId = #{userfile.userId}
+            </if>
+            <if test="userfile.extendName != null">
+                and uf.extendName = #{userfile.extendName}
+            </if>
+        </where>
+        ORDER BY isDir desc
+        limit #{beginCount}, #{pageCount}
+    </select>
+</mapper>

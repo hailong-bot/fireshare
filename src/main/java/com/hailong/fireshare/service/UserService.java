@@ -8,4 +8,6 @@ public interface UserService extends IService<User> {
     RestResult<String> registerUser(User user);
 
     RestResult<User> login(User user);
+
+    User getUserByToken(String token);
 }

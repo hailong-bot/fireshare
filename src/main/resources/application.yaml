@@ -9,8 +9,16 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
 logging:
   file:
     name: G:\code\fireshare\src\main\resources\logs\web.log
   level:
     root: info
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mapper/**.xml

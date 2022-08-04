@@ -30,7 +30,8 @@ public class OpenApiConfig {
     @Bean(value = "indexApi")
     public Docket indexApi() {
         return new Docket(DocumentationType.OAS_30)
-                .groupName("网站前端接口分组").apiInfo(apiInfo())
+                .groupName("网站前端接口分组")
+                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.hailong.fireshare.controller"))
                 .paths(PathSelectors.any())

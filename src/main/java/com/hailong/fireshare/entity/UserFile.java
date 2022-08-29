@@ -29,4 +29,13 @@ public class UserFile {
     private Integer isDir;
     @TableField("uploadTime")
     private String uploadTime;
+
+    // 删除标志 0-未删除 1-已删除
+    private Integer deleteFlag;
+
+    // 删除时间
+    private String deleteTime;
+
+    //删除批次号
+    private String deleteBatchNum;
 }

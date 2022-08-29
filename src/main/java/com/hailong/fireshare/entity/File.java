@@ -17,4 +17,10 @@ public class File {
     private String timeStampName;
     private String fileUrl;
     private Long fileSize;
+    // 存储类型 0-本地存储 1-阿里云存储, 2-FastDFS存储
+    private Integer storageType;
+    //md5唯一标识
+    private String identifier;
+    //引用数量
+    private Integer pointCount;
 }

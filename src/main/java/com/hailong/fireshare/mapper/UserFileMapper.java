@@ -8,4 +8,8 @@ import java.util.List;
 
 public interface UserFileMapper extends BaseMapper<UserFile> {
     List<UserFileListVo> userfileList(UserFile userfile, Long beginCount, Long pageCount);
+    List<UserFileListVo> selectFileByExtendName(List<String> fileNameList, Long beginCount, Long pageCount, long userId);
+    Long selectCountByExtendName(List<String> fileNameList, Long beginCount, Long pageCount, long userId);
+    List<UserFileListVo> selectFileNotInExtendNames(List<String> fileNameList, Long beginCount, Long pageCount, long userId);
+    Long selectCountNotInExtendNames(List<String> fileNameList, Long beginCount, Long pageCount, long userId);
 }

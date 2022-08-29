@@ -57,6 +57,7 @@ public class FileController {
         userFile.setFilePath(createFileDto.getFilePath());
         userFile.setIsDir(1);
         userFile.setUploadTime(DateUtil.getCurrentTime());
+        userFile.setDeleteFlag(0);
         userfileService.save(userFile);
         return RestResult.success();
     }
@@ -82,6 +83,20 @@ public class FileController {
         Map<String, Object> map = new HashMap<>();
         map.put("total", total);
         map.put("list", fileList);
+        return RestResult.success().data(map);
+    }
+
+    @Operation(summary = "通过文件类型选择文件", description = "该接口可以实现文件格式分类查看", tags = {"file"})
+    @GetMapping(value = "/selectfilebyfiletype")
+    public RestResult<List<Map<String, Object>>> selectFileByFileType(int fileType, Long currentPage, Long pageCount, @RequestHeader("token") String token) {
+
+        User sessionUser = userService.getUserByToken(token);
+        if (sessionUser == null) {
+            return RestResult.fail().message("token验证失败");
+        }
+        long userId = sessionUser.getUserId();
+
+        Map<String, Object> map = userfileService.getUserFileByType(fileType, currentPage, pageCount, userId);
         return RestResult.success().data(map);
 
     }

@@ -9,4 +9,5 @@ import javax.servlet.http.HttpServletResponse;
 public interface FiletransferService {
     void uploadFile(HttpServletRequest request, UploadFileDto uploadFileDto, Long userId);
     void downloadFile(HttpServletResponse httpServletResponse, DownloadFileDTO downloadFileDTO);
+    Long selectStorageSizeByUserId(Long userId);
 }

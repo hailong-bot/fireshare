@@ -11,6 +11,7 @@
             #{fileName}
         </foreach>
         and userId = #{userId}
+        and deleteFlag = 0
     </sql>
     <sql id="selectByNotExtendName">
         left join file on file.fileId = userfile.fileId
@@ -19,6 +20,7 @@
             #{fileName}
         </foreach>
         and userId = #{userId}
+        and deleteFlag = 0
     </sql>
     <select id="selectFileByExtendName" parameterType="com.hailong.fireshare.entity.UserFile" resultType="com.hailong.fireshare.vo.UserFileListVo">
         select * from userfile
@@ -55,8 +57,22 @@
             <if test="userfile.extendName != null">
                 and uf.extendName = #{userfile.extendName}
             </if>
+            and uf.deleteFlag = 0
         </where>
         ORDER BY isDir desc
         limit #{beginCount}, #{pageCount}
+    </select>
+    <update id="updateFilepathByFilepath">
+        UPDATE userfile SET filePath=REPLACE(filePath, #{param1}, #{param2})
+        WHERE filePath like N'${param1}%' and userId = #{param3}
+    </update>
+    <update id="replaceFilePath">
+        UPDATE userfile SET filepath=REPLACE(filepath, #{oldFilePath}, #{filePath})
+        WHERE filepath LIKE N'${oldFilePath}%' and userId = #{userId};
+    </update>
+    <select id="selectStorageSizeByUserId" resultType="java.lang.Long" parameterType="java.lang.Long">
+        SELECT SUM(fileSize) FROM userfile
+                                      LEFT JOIN file ON file.fileId = userfile.fileId
+        WHERE userfile.userId = #{userId} and deleteFlag = 0
     </select>
 </mapper>

@@ -2,15 +2,15 @@ package com.hailong.fireshare.service.impl;
 
 import com.hailong.fireshare.dto.DownloadFileDTO;
 import com.hailong.fireshare.dto.UploadFileDto;
-import com.hailong.fireshare.entity.DownloadFile;
+import com.hailong.fireshare.operation.download.domain.DownloadFile;
 import com.hailong.fireshare.entity.File;
-import com.hailong.fireshare.entity.UploadFile;
+import com.hailong.fireshare.operation.upload.domain.UploadFile;
 import com.hailong.fireshare.entity.UserFile;
 import com.hailong.fireshare.mapper.FileMapper;
 import com.hailong.fireshare.mapper.UserFileMapper;
-import com.hailong.fireshare.operation.Downloader;
+import com.hailong.fireshare.operation.download.Downloader;
 import com.hailong.fireshare.operation.FileOperationFactory;
-import com.hailong.fireshare.operation.Uploader;
+import com.hailong.fireshare.operation.upload.Uploader;
 import com.hailong.fireshare.service.FiletransferService;
 import com.hailong.fireshare.utils.DateUtil;
 import com.hailong.fireshare.utils.PropertiesUtil;
@@ -68,7 +68,7 @@ public class FiletransferServiceImpl implements FiletransferService {
                 userFile.setExtendName(uploadFile.getFileType());
                 userFile.setFileName(uploadFile.getFileName());
                 userFile.setFilePath(uploadFileDto.getFilePath());
-                //userFile.setDeleteFlag(0);
+                userFile.setDeleteFlag(0);
                 userFile.setUserId(userId);
                 userFile.setIsDir(0);
                 userFile.setUploadTime(DateUtil.getCurrentTime());
@@ -101,5 +101,10 @@ public class FiletransferServiceImpl implements FiletransferService {
         uploadFile.setFileUrl(file.getFileUrl());
         uploadFile.setTimeStampName(file.getTimeStampName());
         downloader.download(httpServletResponse, uploadFile);
+    }
+
+    @Override
+    public Long selectStorageSizeByUserId(Long userId) {
+        return userfileMapper.selectStorageSizeByUserId(userId);
     }
 }

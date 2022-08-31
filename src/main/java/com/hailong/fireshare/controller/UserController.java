@@ -2,7 +2,7 @@ package com.hailong.fireshare.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hailong.fireshare.dto.RegisterDTO;
-import com.hailong.fireshare.entity.RestResult;
+import com.hailong.fireshare.common.RestResult;
 import com.hailong.fireshare.entity.User;
 import com.hailong.fireshare.service.UserService;
 import com.hailong.fireshare.utils.JWTUtil;

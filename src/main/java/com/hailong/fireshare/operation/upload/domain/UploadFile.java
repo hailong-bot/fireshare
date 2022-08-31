@@ -1,4 +1,4 @@
-package com.hailong.fireshare.entity;
+package com.hailong.fireshare.operation.upload.domain;
 
 import lombok.Data;
 

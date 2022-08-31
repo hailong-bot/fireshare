@@ -1,7 +1,7 @@
-package com.hailong.fireshare.product;
+package com.hailong.fireshare.operation.download.product;
 
-import com.hailong.fireshare.entity.DownloadFile;
-import com.hailong.fireshare.operation.Downloader;
+import com.hailong.fireshare.operation.download.domain.DownloadFile;
+import com.hailong.fireshare.operation.download.Downloader;
 import com.hailong.fireshare.utils.PathUtil;
 import org.springframework.stereotype.Component;
 

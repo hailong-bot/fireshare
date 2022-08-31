@@ -1,6 +1,6 @@
-package com.hailong.fireshare.operation;
+package com.hailong.fireshare.operation.upload;
 
-import com.hailong.fireshare.entity.UploadFile;
+import com.hailong.fireshare.operation.upload.domain.UploadFile;
 import com.hailong.fireshare.utils.PathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;

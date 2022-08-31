@@ -1,7 +1,7 @@
-package com.hailong.fireshare.product;
+package com.hailong.fireshare.operation.delete.product;
 
-import com.hailong.fireshare.entity.DeleteFile;
-import com.hailong.fireshare.operation.Deleter;
+import com.hailong.fireshare.operation.delete.domain.DeleteFile;
+import com.hailong.fireshare.operation.delete.Deleter;
 import com.hailong.fireshare.utils.FileUtil;
 import com.hailong.fireshare.utils.PathUtil;
 import org.springframework.stereotype.Component;

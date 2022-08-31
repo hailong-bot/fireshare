@@ -1,6 +1,6 @@
 package com.hailong.fireshare.utils;
 
-import com.hailong.fireshare.config.JwtProperties;
+import com.hailong.fireshare.config.jwt.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;

@@ -1,7 +1,7 @@
-package com.hailong.fireshare.config;
+package com.hailong.fireshare.advice;
 
-import com.hailong.fireshare.entity.RestResult;
-import com.hailong.fireshare.entity.ResultCodeEnum;
+import com.hailong.fireshare.common.RestResult;
+import com.hailong.fireshare.common.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.hailong.fireshare.entity;
+package com.hailong.fireshare.operation.delete.domain;
 
 import lombok.Data;
 

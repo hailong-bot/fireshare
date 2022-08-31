@@ -1,11 +1,9 @@
 package com.hailong.fireshare.controller;
 
+import com.hailong.fireshare.common.RestResult;
 import com.hailong.fireshare.dto.DownloadFileDTO;
 import com.hailong.fireshare.dto.UploadFileDto;
-import com.hailong.fireshare.entity.File;
-import com.hailong.fireshare.entity.RestResult;
-import com.hailong.fireshare.entity.User;
-import com.hailong.fireshare.entity.UserFile;
+import com.hailong.fireshare.entity.*;
 import com.hailong.fireshare.service.FileService;
 import com.hailong.fireshare.service.FiletransferService;
 import com.hailong.fireshare.service.UserFileService;
@@ -63,6 +61,7 @@ public class FiletransferController {
                 userfile.setFileName(fileName.substring(0, fileName.lastIndexOf(".")));
                 userfile.setExtendName(FileUtil.getFileExtendName(fileName));
                 userfile.setIsDir(0);
+                userfile.setDeleteFlag(0);
                 userfile.setUploadTime(DateUtil.getCurrentTime());
                 userfileService.save(userfile);
                 // fileService.increaseFilePointCount(file.getFileId());
@@ -95,6 +94,20 @@ public class FiletransferController {
     @RequestMapping(value = "/downloadfile", method = RequestMethod.GET)
     public void downloadFile(HttpServletResponse response, DownloadFileDTO downloadFileDTO) {
         filetransferService.downloadFile(response, downloadFileDTO);
+    }
+
+    @Operation(summary = "获取存储信息", description = "获取存储信息", tags = {"filetransfer"})
+    @RequestMapping(value = "/getstorage", method = RequestMethod.GET)
+    @ResponseBody
+    public RestResult<Long> getStorage(@RequestHeader("token") String token) {
+
+        User sessionUserBean = userService.getUserByToken(token);
+        Storage storageBean = new Storage();
+
+
+        Long storageSize = filetransferService.selectStorageSizeByUserId(sessionUserBean.getUserId());
+        return RestResult.success().data(storageSize);
+
     }
 
 }

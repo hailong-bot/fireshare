@@ -1,9 +1,9 @@
-package com.hailong.fireshare.product;
+package com.hailong.fireshare.operation.upload.product;
 
-import com.hailong.fireshare.entity.UploadFile;
+import com.hailong.fireshare.operation.upload.domain.UploadFile;
 import com.hailong.fireshare.exception.NotSameFileExpection;
 import com.hailong.fireshare.exception.UploadException;
-import com.hailong.fireshare.operation.Uploader;
+import com.hailong.fireshare.operation.upload.Uploader;
 import com.hailong.fireshare.utils.FileUtil;
 import com.hailong.fireshare.utils.PathUtil;
 import net.coobird.thumbnailator.Thumbnails;
@@ -14,7 +14,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;

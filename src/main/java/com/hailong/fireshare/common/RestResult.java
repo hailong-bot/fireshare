@@ -1,4 +1,4 @@
-package com.hailong.fireshare.entity;
+package com.hailong.fireshare.common;
 
 import lombok.Data;
 

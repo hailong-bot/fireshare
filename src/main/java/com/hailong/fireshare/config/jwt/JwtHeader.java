@@ -1,4 +1,4 @@
-package com.hailong.fireshare.entity;
+package com.hailong.fireshare.config.jwt;
 
 import lombok.Data;
 

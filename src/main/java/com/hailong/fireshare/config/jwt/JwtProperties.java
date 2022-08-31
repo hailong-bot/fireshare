@@ -1,7 +1,7 @@
-package com.hailong.fireshare.config;
+package com.hailong.fireshare.config.jwt;
 
-import com.hailong.fireshare.entity.JwtHeader;
-import com.hailong.fireshare.entity.JwtPayload;
+import com.hailong.fireshare.config.jwt.JwtHeader;
+import com.hailong.fireshare.config.jwt.JwtPayload;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

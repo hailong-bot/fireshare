@@ -1,6 +1,6 @@
-package com.hailong.fireshare.operation;
+package com.hailong.fireshare.operation.download;
 
-import com.hailong.fireshare.entity.DownloadFile;
+import com.hailong.fireshare.operation.download.domain.DownloadFile;
 
 import javax.servlet.http.HttpServletResponse;
 

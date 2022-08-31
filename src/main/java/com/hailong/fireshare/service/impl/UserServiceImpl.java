@@ -3,7 +3,7 @@ package com.hailong.fireshare.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hailong.fireshare.entity.RestResult;
+import com.hailong.fireshare.common.RestResult;
 import com.hailong.fireshare.entity.User;
 import com.hailong.fireshare.mapper.UserMapper;
 import com.hailong.fireshare.service.UserService;

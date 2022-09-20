@@ -30,9 +30,12 @@ public class UserFile {
     @TableField("uploadTime")
     private String uploadTime;
     // 删除标志 0-未删除 1-已删除
+    @TableField("deleteFlag")
     private Integer deleteFlag;
     // 删除时间
+    @TableField("deleteTime")
     private String deleteTime;
     //删除批次号
+    @TableField("deleteBatchNum")
     private String deleteBatchNum;
 }

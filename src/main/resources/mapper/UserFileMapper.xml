@@ -5,7 +5,7 @@
 <mapper namespace="com.hailong.fireshare.mapper.UserFileMapper">
 
     <sql id="selectByExtendName" >
-        left join file on file.fileId = userfile.fileId
+        left join file on file.fileId = userFile.fileId
         where extendName in
         <foreach collection="fileNameList" open="(" close=")" separator="," item="fileName" >
             #{fileName}
@@ -14,7 +14,7 @@
         and deleteFlag = 0
     </sql>
     <sql id="selectByNotExtendName">
-        left join file on file.fileId = userfile.fileId
+        left join file on file.fileId = userFile.fileId
         where extendName not in
         <foreach collection="fileNameList" open="(" close=")" separator="," item="fileName" >
             #{fileName}
@@ -23,24 +23,26 @@
         and deleteFlag = 0
     </sql>
     <select id="selectFileByExtendName" parameterType="com.hailong.fireshare.entity.UserFile" resultType="com.hailong.fireshare.vo.UserFileListVo">
-        select * from userfile
+        select * from userFile
         <include refid="selectByExtendName"></include>
+        and userId = #{userId}
+        and deleteFlag = 0
         limit #{beginCount}, #{pageCount}
     </select>
 
     <select id="selectCountByExtendName" parameterType="com.hailong.fireshare.entity.UserFile" resultType="java.lang.Long">
-        select count(*) from userfile
+        select count(*) from userFile
         <include refid="selectByExtendName"></include>
     </select>
 
     <select id="selectFileNotInExtendNames" parameterType="com.hailong.fireshare.entity.UserFile" resultType="com.hailong.fireshare.vo.UserFileListVo">
-        select * from userfile
+        select * from userFile
         <include refid="selectByNotExtendName"></include>
         limit #{beginCount}, #{pageCount}
     </select>
 
     <select id="selectCountNotInExtendNames" parameterType="com.hailong.fireshare.entity.UserFile" resultType="java.lang.Long">
-        select count(*) from userfile
+        select count(*) from userFile
         <include refid="selectByNotExtendName"></include>
     </select>
 

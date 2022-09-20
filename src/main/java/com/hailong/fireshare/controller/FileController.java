@@ -41,20 +41,20 @@ public class FileController {
     @ResponseBody
     public RestResult<String> createFile(@RequestBody CreateFileDTO createFileDto, @RequestHeader("token") String token){
 
-        User userByToken = userService.getUserByToken(token);
-        if(ObjectUtils.isEmpty(userByToken)){
+        User sessionUser = userService.getUserByToken(token);
+        if(ObjectUtils.isEmpty(sessionUser)){
             return RestResult.fail().message("token认证失败");
         }
         LambdaQueryWrapper<UserFile> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(UserFile::getFileName,"");
-        lambdaQueryWrapper.eq(UserFile::getFilePath, "");
-        lambdaQueryWrapper.eq(UserFile::getUserId, 0);
+        lambdaQueryWrapper.eq(UserFile::getFileName,createFileDto.getFileName());
+        lambdaQueryWrapper.eq(UserFile::getFilePath, createFileDto.getFilePath());
+        lambdaQueryWrapper.eq(UserFile::getUserId, sessionUser.getUserId());
         List<UserFile> list = userfileService.list(lambdaQueryWrapper);
         if(!ObjectUtils.isEmpty(list)){
             return RestResult.fail().message("同目录下文件名重复");
         }
         UserFile userFile = new UserFile();
-        userFile.setUserId(userByToken.getUserId());
+        userFile.setUserId(sessionUser.getUserId());
         userFile.setFileName(createFileDto.getFileName());
         userFile.setFilePath(createFileDto.getFilePath());
         userFile.setIsDir(1);
@@ -93,6 +93,7 @@ public class FileController {
 
     @Operation(summary = "通过文件类型选择文件", description = "该接口可以实现文件格式分类查看", tags = {"file"})
     @GetMapping(value = "/selectfilebyfiletype")
+    @ResponseBody
     public RestResult<List<Map<String, Object>>> selectFileByFileType(int fileType, Long currentPage, Long pageCount, @RequestHeader("token") String token) {
 
         User sessionUser = userService.getUserByToken(token);

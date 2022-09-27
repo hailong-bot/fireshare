@@ -37,6 +37,7 @@ public class FiletransferController {
 
     @Operation(summary = "极速上传", description = "校验文件MD5判断文件是否存在，如果存在直接上传成功并返回skipUpload=true，如果不存在返回skipUpload=false需要再次调用该接口的POST方法", tags = {"filetransfer"})
     @GetMapping(value = "/uploadfile")
+    @ResponseBody
     public RestResult<UploadFileVo> uploadFileSpeed(UploadFileDto uploadFileDto, @RequestHeader("token") String token) {
 
         User sessionUser = userService.getUserByToken(token);

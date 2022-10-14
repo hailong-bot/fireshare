@@ -1,12 +1,19 @@
 package com.hailong.fireshare.vo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @Schema(description="用户文件列表VO")
-public class UserFileListVo {
+public class UserFileListVo implements Serializable {
+    private static final long serialVersionUID = 8135106336550067037L;
     @Schema(description="文件id")
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long fileId;
     @Schema(description="时间戳名称")
     private String timeStampName;
@@ -20,8 +27,11 @@ public class UserFileListVo {
     private Integer pointCount;
     @Schema(description="md5")
     private String identifier;
+    @JSONField(serializeUsing= ToStringSerializer.class)
     @Schema(description="用户文件id")
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long userFileId;
+    @JsonSerialize(using= ToStringSerializer.class)
     @Schema(description="用户id")
     private Long userId;
 

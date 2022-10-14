@@ -3,6 +3,7 @@ package com.hailong.fireshare.controller;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hailong.fireshare.dto.*;
 import com.hailong.fireshare.entity.File;
 import com.hailong.fireshare.common.RestResult;
@@ -78,7 +79,7 @@ public class FileController {
         }
         List<UserFileListVo> fileList = userfileService.getUserFileByFilePath(userfileListDto.getFilePath(),
                 sessionUser.getUserId(), userfileListDto.getCurrentPage(), userfileListDto.getPageCount());
-
+        ObjectMapper objectMapper = new ObjectMapper();
         LambdaQueryWrapper<UserFile> userFileLambdaQueryWrapper = new LambdaQueryWrapper<>();
         userFileLambdaQueryWrapper
                 .eq(UserFile::getUserId, sessionUser.getUserId())

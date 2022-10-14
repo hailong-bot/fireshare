@@ -111,11 +111,11 @@ public class UserFileServiceImpl extends ServiceImpl<UserFileMapper, UserFile> i
 
         }
 
-        RecoveryFile recoveryFile = new RecoveryFile();
+        /*RecoveryFile recoveryFile = new RecoveryFile();
         recoveryFile.setUserFileId(userFileId);
         recoveryFile.setDeleteTime(DateUtil.getCurrentTime());
         recoveryFile.setDeleteBatchNum(uuid);
-        recoveryFileMapper.insert(recoveryFile);
+        recoveryFileMapper.insert(recoveryFile);*/
     }
 
     @Override

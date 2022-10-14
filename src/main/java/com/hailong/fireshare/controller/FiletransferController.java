@@ -105,7 +105,6 @@ public class FiletransferController {
         User sessionUserBean = userService.getUserByToken(token);
         Storage storageBean = new Storage();
 
-
         Long storageSize = filetransferService.selectStorageSizeByUserId(sessionUserBean.getUserId());
         return RestResult.success().data(storageSize);
 
